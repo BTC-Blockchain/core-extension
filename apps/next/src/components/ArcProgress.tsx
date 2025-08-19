@@ -1,5 +1,6 @@
 import { Theme, useTheme } from '@avalabs/core-k2-components';
 import { get } from 'lodash';
+import { FC } from 'react';
 
 type Props = {
   size: number;
@@ -18,13 +19,13 @@ const resolveColor = (theme: Theme, color: string) => {
   return resolved.main;
 };
 
-export const ArcProgress = ({
+export const ArcProgress: FC<Props> = ({
   size,
   value,
   thickness = 5,
   bgColor = 'grey.800',
   color = 'secondary',
-}: Props) => {
+}) => {
   const theme = useTheme();
 
   const width = size;
@@ -40,7 +41,8 @@ export const ArcProgress = ({
   // Since the arc is coded to always be exactly half of the circle,
   // we can calculate the % values based on a formula for circumference of a circle.
   const circumference = 2 * Math.PI * (size / 2);
-  const progressValue = ((100 - value) / 100) * circumference;
+  const clampedValue = Math.max(0, Math.min(100, value));
+  const progressValue = ((100 - clampedValue) / 100) * circumference;
 
   return (
     <svg

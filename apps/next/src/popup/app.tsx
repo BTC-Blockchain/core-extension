@@ -32,11 +32,11 @@ import { useEffect, useRef } from 'react';
 import { Route, Switch, useHistory, useLocation } from 'react-router-dom';
 
 import { Header } from '@/components/Header';
+import { getContactsPath, getSendPath } from '@/config/routes';
 import { Portfolio } from '@/pages/Portfolio';
+import { Send } from '@/pages/Send';
 import { Children, ReactElement } from 'react';
 import { Providers } from './providers';
-import { getContactsPath, getSendPath } from '@/config/routes';
-import { Send } from '@/pages/Send';
 
 const pagesWithoutHeader = [
   '/account-management',
